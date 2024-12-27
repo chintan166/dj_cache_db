@@ -80,6 +80,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        'OPTIONS': {
+            'timeout': 20,  # Wait up to 20 seconds for the database lock to release
+        },
     }
 }
 
@@ -112,7 +115,7 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -124,7 +127,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-CACHE_MIDDLEWARE_SECONDS = 20
+CACHE_MIDDLEWARE_SECONDS = 10
 CACHES = {
     'default': {
         'BACKEND':'django.core.cache.backends.db.DatabaseCache',
